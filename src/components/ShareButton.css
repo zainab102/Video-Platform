@@ -1,0 +1,54 @@
+.share-container {
+  position: relative;
+  display: inline-block;
+}
+
+.share-btn {
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.share-btn:hover {
+  background-color: #e9ecef;
+}
+
+.share-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  min-width: 120px;
+}
+
+.share-option {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.share-option:hover {
+  background-color: #f8f9fa;
+}
+
+.share-option:first-child {
+  border-radius: 4px 4px 0 0;
+}
+
+.share-option:last-child {
+  border-radius: 0 0 4px 4px;
+}
