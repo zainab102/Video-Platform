@@ -16,6 +16,7 @@ const SubscribeButton = ({ channel }) => {
       className={`subscribe-btn ${isSubscribed ? "subscribed" : ""}`}
     >
       {isSubscribed ? "Subscribed" : "Subscribe"}
+      <span className="channel-name"> • {channel}</span>
       <span className="subscriber-count">
         {subscriberCount.toLocaleString()} subscribers
       </span>

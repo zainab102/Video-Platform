@@ -1,22 +1,19 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import videos from "../data/videos.json";
 import "./Home.css";
 
 const Home = () => {
-  const [trendingVideos, setTrendingVideos] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  useEffect(() => {
-    // Get trending videos (top 10 by views)
-    const trending = videos.sort((a, b) => b.views - a.views).slice(0, 10);
-    setTrendingVideos(trending);
+  const trendingVideos = useMemo(
+    () => [...videos].sort((a, b) => b.views - a.views).slice(0, 10),
+    [],
+  );
 
-    // Get unique categories
+  const categories = useMemo(() => {
     const allTags = videos.flatMap((video) => video.tags);
-    const uniqueCategories = [...new Set(allTags)];
-    setCategories(uniqueCategories);
+    return [...new Set(allTags)];
   }, []);
 
   const filteredVideos =

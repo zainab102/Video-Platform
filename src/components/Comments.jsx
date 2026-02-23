@@ -2,15 +2,20 @@ import { useState } from "react";
 import "./Comments.css";
 
 const Comments = ({ videoId }) => {
-  const [comments, setComments] = useState([
-    { id: 1, user: "User1", text: "Great video!", timestamp: "2 hours ago" },
-    {
-      id: 2,
-      user: "User2",
-      text: "Thanks for sharing!",
-      timestamp: "1 hour ago",
-    },
-  ]);
+  const [comments, setComments] = useState(() => {
+    const storedComments = localStorage.getItem(`comments:${videoId}`);
+    if (storedComments) return JSON.parse(storedComments);
+
+    return [
+      { id: 1, user: "User1", text: "Great video!", timestamp: "2 hours ago" },
+      {
+        id: 2,
+        user: "User2",
+        text: "Thanks for sharing!",
+        timestamp: "1 hour ago",
+      },
+    ];
+  });
   const [newComment, setNewComment] = useState("");
 
   const handleSubmit = (e) => {
@@ -22,7 +27,9 @@ const Comments = ({ videoId }) => {
         text: newComment,
         timestamp: "Just now",
       };
-      setComments([...comments, comment]);
+      const updatedComments = [...comments, comment];
+      setComments(updatedComments);
+      localStorage.setItem(`comments:${videoId}`, JSON.stringify(updatedComments));
       setNewComment("");
     }
   };
